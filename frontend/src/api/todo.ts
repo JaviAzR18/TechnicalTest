@@ -27,7 +27,6 @@ export const createTodo = async (payload: TodoCreatePayload): Promise<Todo> => {
     body: JSON.stringify({
       ...payload,
       completed: false,
-      favorite: false,
     }),
   });
   return handleResponse<Todo>(res);
@@ -46,4 +45,11 @@ export const updateTodo = async (
   });
   console.log(res);
   return handleResponse<Todo>(res);
+};
+
+export const deleteTodo = async (id: number): Promise<void> => {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+  await handleResponse<void>(res);
 };

@@ -23,6 +23,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ title, setTitle, addTodo }) => {
       >
         Add
       </button>
+      
     </div>
   );
 };

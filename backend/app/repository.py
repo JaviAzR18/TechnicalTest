@@ -38,7 +38,12 @@ class TodoRepository:
         return None
 
     def delete(self, todo_id: int) -> bool:
-        pass
+        todos = self.get_all()
+        remaining = [todo for todo in todos if todo.id != todo_id]
+        if len(remaining) == len(todos):
+            return False
+        self._save(remaining)
+        return True
 
     def _save(self, todos: list[Todo]) -> None:
         with open(DATA_FILE, "w", encoding="utf-8") as f:

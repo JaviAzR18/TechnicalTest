@@ -23,3 +23,9 @@ def update_todo(todo_id: int, payload: TodoUpdate) -> Todo:
     if updated is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Todo not found")
     return updated
+
+@router.delete("/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_todo(todo_id: int) -> None:
+    deleted = repository.delete(todo_id)
+    if not deleted:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Todo not found")
