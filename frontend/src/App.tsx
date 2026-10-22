@@ -1,5 +1,5 @@
 // src/App.tsx
-import { useState } from "react";
+import { useState, useEffect, useCallback  } from "react";
 import type { Todo } from "./types/todo";
 import { createTodo, deleteTodo , getTodos, updateTodo } from "./api/todo.ts";
 import TodoForm from "./components/TodoForm";
@@ -10,12 +10,21 @@ function App() {
   const [title, setTitle] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const loadTodos = () => {
-    getTodos().then((data) => {
-      setTodos(data);
-    });
-  };
-
+  
+  const loadTodos = useCallback(async () => {
+  try {
+    const data = await getTodos();
+    setTodos(data);
+    setError(null);
+    } catch {
+      setError("Could not load tasks. Make sure the backend is running.");
+    }
+  }, []);
+  useEffect(() => {
+    void loadTodos();
+  }, [loadTodos]);
+  
+  
   const addTodo = async () => {
     if (!title.trim()) return;
     try {
@@ -59,12 +68,6 @@ function App() {
           setTitle={setTitle}
           addTodo={addTodo}
         />
-        <button
-        onClick={loadTodos}
-        className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition cursor-pointer"
-      >
-        Load Tasks
-      </button>
 
         {error ? (
           <p className="mb-4 text-sm text-red-600" role="alert">
