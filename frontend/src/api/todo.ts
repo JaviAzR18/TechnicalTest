@@ -1,34 +1,49 @@
-import type { Todo } from "../types/todo";
+import type { Todo, TodoCreatePayload, TodoUpdatePayload } from "../types/todo";
 
 const BASE_URL = "http://localhost:8000/todos";
 
+async function handleResponse<T>(res: Response): Promise<T> {
+  if (!res.ok) {
+    throw new Error(`Request failed with status ${res.status}`);
+  }
+  if (res.status === 204) {
+    return undefined as T;
+  }
+  console.log(res);
+  return res.json();
+}
+
 export const getTodos = async (): Promise<Todo[]> => {
   const res = await fetch(BASE_URL);
-  if (!res.ok) throw new Error("Error fetching todos");
-  return res.json();
+  return handleResponse<Todo[]>(res);
 };
 
-export const createTodo = async (title: string): Promise<void> => {
-  await fetch(BASE_URL, {
+export const createTodo = async (payload: TodoCreatePayload): Promise<Todo> => {
+  const res = await fetch(BASE_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ title, completed: false }),
+    body: JSON.stringify({
+      ...payload,
+      completed: false,
+      favorite: false,
+    }),
   });
+  return handleResponse<Todo>(res);
 };
 
-export const toggleTodoStatus = async (
+export const updateTodo = async (
   id: number,
-  currentStatus: boolean
+  payload: TodoUpdatePayload
 ): Promise<Todo> => {
   const res = await fetch(`${BASE_URL}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ completed: !currentStatus }),
+    body: JSON.stringify(payload),
   });
-  if (!res.ok) throw new Error("Error toggling todo status");
-  return res.json();
+  console.log(res);
+  return handleResponse<Todo>(res);
 };

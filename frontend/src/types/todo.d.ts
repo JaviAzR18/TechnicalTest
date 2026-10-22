@@ -3,3 +3,11 @@ export interface Todo {
   title: string
   completed: boolean
 }
+
+export interface TodoCreatePayload {
+  title: string
+}
+
+export type TodoUpdatePayload = Partial<
+  Pick<Todo, "title" | "completed">
+>

@@ -1,11 +1,14 @@
 // src/App.tsx
 import { useState } from "react";
 import type { Todo } from "./types/todo";
-import { getTodos, createTodo, toggleTodoStatus } from "./api/todo";
+// import { getTodos, createTodo, toggleTodoStatus } from "./api/todo.ts";
+import { createTodo, getTodos, updateTodo } from "./api/todo.ts";
+
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, setTitle] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   const loadTodos = () => {
     getTodos().then((data) => {
@@ -13,18 +16,28 @@ function App() {
     });
   };
 
-  const addTodo = () => {
+  const addTodo = async () => {
     if (!title.trim()) return;
-    createTodo(title)
+    try {
+      await createTodo({
+        title: title.trim(),
+      });
+      setTitle("");
+      await loadTodos();
+    } catch {
+      setError("Could not create the task.");
+    }
   };
 
-  const toggleTodo = (id: number) => {
-    const todo = todos.find((t) => t.id === id);
+  const toggleTodo = async (id: number) => {
+    const todo = todos.find((item) => item.id === id);
     if (!todo) return;
-
-    toggleTodoStatus(id, todo.completed).then((updated) => {
-      setTodos((prev) => prev.map((t) => (t.id === id ? updated : t)));
-    });
+    try {
+      await updateTodo(id, { completed: !todo.completed });
+      await loadTodos();
+    } catch {
+      setError("Could not update the task status.");
+    }
   };
 
   return (
