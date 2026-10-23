@@ -4,12 +4,14 @@ import type { Todo } from "../types/todo";
 interface TodoItemProps {
   todo: Todo;
   toggleTodo: (id: number) => void;
+  toggleFavorite: (id: number) => void;
   removeTodo: (id: number) => void;
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({
   todo,
   toggleTodo,
+  toggleFavorite,
   removeTodo,
 }) => {
   console.log(todo);
@@ -43,7 +45,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
       
       <button
         type="button"
-        onClick={() => {}}
+        onClick={() => toggleFavorite(todo.id)}
         className={`shrink-0 px-2 py-1 rounded-lg transition cursor-pointer ${
           todo.favorite
             ? "text-amber-500 hover:bg-amber-50"

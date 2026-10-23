@@ -6,6 +6,7 @@ interface TodoListProps {
   todos: Todo[];
   emptyMessage?: string;
   toggleTodo: (id: number) => void;
+  toggleFavorite: (id: number) => void;
   removeTodo: (id: number) => void;
 }
 
@@ -13,6 +14,7 @@ const TodoList: React.FC<TodoListProps> = ({
   todos,
   emptyMessage = "No tasks yet.",
   toggleTodo,
+  toggleFavorite,
   removeTodo,
 }) => {
   if (todos.length === 0) {
@@ -26,6 +28,7 @@ const TodoList: React.FC<TodoListProps> = ({
           key={todo.id}
           todo={todo}
           toggleTodo={toggleTodo}
+          toggleFavorite={toggleFavorite}
           removeTodo={removeTodo}
         />
       ))}

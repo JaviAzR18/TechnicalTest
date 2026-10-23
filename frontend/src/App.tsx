@@ -52,6 +52,17 @@ function App() {
     }
   };
 
+  const toggleFavorite = async (id: number) => {
+    const todo = todos.find((item) => item.id === id);
+    if (!todo) return;
+    try {
+      await updateTodo(id, { favorite: !todo.favorite });
+      await loadTodos();
+    } catch {
+      setError("Could not update the favorite status.");
+    }
+  };
+
   const removeTodo = async (id: number) => {
     try {
       await deleteTodo(id);
@@ -60,6 +71,9 @@ function App() {
       setError("Could not delete the task.");
     }
   };
+
+  const favoritesTodos = todos.filter((todo) => todo.favorite);
+  const otherTodos = todos.filter((todo) => !todo.favorite);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
@@ -80,12 +94,24 @@ function App() {
           </p>
         ) : null}
 
+        <section className="mb-8">
+          <h2 className="text-lg font-semibold mb-3 text-gray-800">Favorites</h2>
+          <TodoList
+            todos={favoritesTodos}
+            emptyMessage="No favorite tasks yet."
+            toggleTodo={toggleTodo}
+            toggleFavorite={toggleFavorite}
+            removeTodo={removeTodo}
+          />
+        </section>
+
         <section>
           <h2 className="text-lg font-semibold mb-3 text-gray-800">Tasks</h2>
           <TodoList
-            todos={todos}
+            todos={otherTodos}
             emptyMessage="No tasks yet."
             toggleTodo={toggleTodo}
+            toggleFavorite={toggleFavorite}
             removeTodo={removeTodo}
           />
         </section>

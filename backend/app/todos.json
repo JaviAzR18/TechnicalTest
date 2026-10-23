@@ -10,7 +10,7 @@
     "title": "Learn TypeScript",
     "description": "Type the frontend models and API client.",
     "completed": true,
-    "favorite": true,
+    "favorite": false,
     "id": 2
   },
   {
@@ -23,28 +23,28 @@
   {
     "title": "Learn FastAPI",
     "description": "Expose REST endpoints for the Todo app.",
-    "completed": false,
-    "favorite": false,
+    "completed": true,
+    "favorite": true,
     "id": 4
   },
   {
     "title": "Learn Docker",
     "description": "",
-    "completed": false,
-    "favorite": false,
+    "completed": true,
+    "favorite": true,
     "id": 5
   },
   {
     "title": "Learn PostgreSQL",
     "description": "",
     "completed": true,
-    "favorite": false,
+    "favorite": true,
     "id": 6
   },
   {
     "title": "Learn Tailwind CSS",
     "description": "Style the UI with utility classes.",
-    "completed": true,
+    "completed": false,
     "favorite": false,
     "id": 7
   },
@@ -52,7 +52,14 @@
     "title": "new task",
     "description": "some description",
     "completed": false,
-    "favorite": true,
+    "favorite": false,
     "id": 8
+  },
+  {
+    "title": "Nueva task",
+    "description": "descripcion de la task",
+    "completed": false,
+    "favorite": false,
+    "id": 9
   }
 ]
