@@ -2,8 +2,8 @@ from pydantic import BaseModel, Field
 
 class TodoBase(BaseModel):
     title: str
+    description: str = ""
     completed: bool = False
-
 
 class TodoCreate(TodoBase):
     pass
@@ -11,6 +11,7 @@ class TodoCreate(TodoBase):
 
 class TodoUpdate(BaseModel):
     title: str | None = None
+    description: str | None = None
     completed: bool | None = None
 
 

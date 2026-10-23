@@ -12,22 +12,35 @@ const TodoItem: React.FC<TodoItemProps> = ({
   toggleTodo,
   removeTodo,
 }) => {
+  console.log(todo);
   return (
-    <li
-      key={todo.id}
-      className={"flex items-center gap-2 bg-gray-50 p-3 rounded-lg border border-gray-200"}
-    >
-    <div className={`flex-1 flex items-center gap-2 ${
-        todo.completed ? "line-through text-gray-400" : ""
-      }`}>
+    <li className="flex items-start gap-3 bg-gray-50 p-3 rounded-lg border border-gray-200">
       <input
         type="checkbox"
         checked={todo.completed}
         onChange={() => toggleTodo(todo.id)}
-        className="cursor-pointer"
+        className="mt-1 cursor-pointer"
+        aria-label={`Mark ${todo.title} as ${todo.completed ? "pending" : "completed"}`}
       />
-      <span>{todo.title}</span>
-    </div>
+      <div className="flex-1 min-w-0">
+        <span
+          className={`block font-medium ${
+            todo.completed ? "line-through text-gray-400" : "text-gray-800"
+          }`}
+        >
+          {todo.title}
+        </span>
+        {todo.description ? (
+          <p
+            className={`mt-1 text-sm ${
+              todo.completed ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            {todo.description}
+          </p>
+        ) : null}
+      </div>
+      
       <button
         type="button"
         onClick={() => removeTodo(todo.id)}

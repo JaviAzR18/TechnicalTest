@@ -8,6 +8,7 @@ import TodoList from "./components/TodoList";
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   
@@ -30,8 +31,10 @@ function App() {
     try {
       await createTodo({
         title: title.trim(),
+        description: description.trim(),
       });
       setTitle("");
+      setDescription("");
       await loadTodos();
     } catch {
       setError("Could not create the task.");
@@ -65,7 +68,9 @@ function App() {
 
         <TodoForm
           title={title}
+          description={description}
           setTitle={setTitle}
+          setDescription={setDescription}
           addTodo={addTodo}
         />
 
