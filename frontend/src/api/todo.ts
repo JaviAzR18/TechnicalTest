@@ -27,6 +27,7 @@ export const createTodo = async (payload: TodoCreatePayload): Promise<Todo> => {
     body: JSON.stringify({
       ...payload,
       completed: false,
+      favorite: false,
     }),
   });
   return handleResponse<Todo>(res);

@@ -43,6 +43,18 @@ const TodoItem: React.FC<TodoItemProps> = ({
       
       <button
         type="button"
+        onClick={() => {}}
+        className={`shrink-0 px-2 py-1 rounded-lg transition cursor-pointer ${
+          todo.favorite
+            ? "text-amber-500 hover:bg-amber-50"
+            : "text-gray-400 hover:bg-gray-100"
+        }`}
+      >
+        {todo.favorite ? "★" : "☆"}
+      </button>
+
+      <button
+        type="button"
         onClick={() => removeTodo(todo.id)}
         className="shrink-0 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg transition cursor-pointer text-sm"
       >

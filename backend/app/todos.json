@@ -3,47 +3,56 @@
     "title": "Learn React",
     "description": "Build the Todo UI with components and state.",
     "completed": true,
+    "favorite": false,
     "id": 1
   },
   {
     "title": "Learn TypeScript",
     "description": "Type the frontend models and API client.",
     "completed": true,
+    "favorite": true,
     "id": 2
   },
   {
     "title": "Learn Vite",
     "description": "Use the Vite + React toolchain.",
     "completed": true,
+    "favorite": false,
     "id": 3
   },
   {
     "title": "Learn FastAPI",
     "description": "Expose REST endpoints for the Todo app.",
     "completed": false,
+    "favorite": false,
     "id": 4
   },
   {
     "title": "Learn Docker",
+    "description": "",
     "completed": false,
+    "favorite": false,
     "id": 5
   },
   {
     "title": "Learn PostgreSQL",
     "description": "",
     "completed": true,
+    "favorite": false,
     "id": 6
   },
   {
     "title": "Learn Tailwind CSS",
     "description": "Style the UI with utility classes.",
     "completed": true,
+    "favorite": false,
     "id": 7
   },
   {
     "title": "new task",
     "description": "some description",
     "completed": false,
+    "favorite": true,
     "id": 8
   }
 ]

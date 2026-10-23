@@ -3,6 +3,7 @@ export interface Todo {
   title: string
   description: string
   completed: boolean
+  favorite: boolean
 }
 
 export interface TodoCreatePayload {
@@ -11,5 +12,5 @@ export interface TodoCreatePayload {
 }
 
 export type TodoUpdatePayload = Partial<
-  Pick<Todo, "title" | "description" | "completed">
+  Pick<Todo, "title" | "description" | "completed" | "favorite">
 >
