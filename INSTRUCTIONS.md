@@ -9,29 +9,29 @@ The goal is to demonstrate your understanding of the codebase and your ability t
 
 1. **Implement task completion status functionality**
    You can select a task as completed, but the status is not saved in the backend.
-   - [ ] Complete the implementation so that the status is saved in the backend and displayed in the frontend.
+   - [X] Complete the implementation so that the status is saved in the backend and displayed in the frontend.
 
 2. **Implement delete task functionality**.
    Allow users to delete individual todos from the list, both in the backend and frontend.
-   - [ ] Add a delete button next to each task in the UI.
-   - [ ] Implement the backend API endpoint to handle task deletion.
+   - [X] Add a delete button next to each task in the UI.
+   - [X] Implement the backend API endpoint to handle task deletion.
 
 3. **Auto-load Tasks**. The application should automatically fetch the todo list when:
-   - [ ] The page loads.
-   - [ ] The user adds a new task.
-   - [ ] The user deletes a task.
-   - [ ] The user marks a task as completed.
+   - [X] The page loads.
+   - [X] The user adds a new task.
+   - [X] The user deletes a task.
+   - [X] The user marks a task as completed.
 
 4. **Add Descriptions and Favorite Tasks Section**
-   - [ ] Add a description field to each task.
-   - [ ] Introduce the concept of a `favorite` tasks.
-   - [ ] Add a way to mark/unmark tasks as favorite.
-   - [ ] Display favorite tasks in a separate section of the UI.
+   - [X] Add a description field to each task.
+   - [X] Introduce the concept of a `favorite` tasks.
+   - [X] Add a way to mark/unmark tasks as favorite.
+   - [X] Display favorite tasks in a separate section of the UI.
 
    _**Suggestion**: To maintain clean and scalable code, consider using routing or the repository pattern if you're adding numerous endpoints._
 
 5. **Create a README**
-   - [ ] Write a clear and concise README for this project.
+   - [X] Write a clear and concise README for this project.
 
 ## How to run the project
 
